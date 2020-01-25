@@ -1,4 +1,4 @@
-# Non-negative Matrix Factorization:
+# Non-negative Matrix Factorization
 
 ## Overview 
 ________________________________________________________________________________________________________________________________________
@@ -20,6 +20,7 @@ Alongside two optimisation methods, a pre-processing step is also presented. The
 * Multiplicative update 
 <br>
 The corresponding objective function used for each optimisation algorithm are:
+<br>
 * Alternative least squares 
 * Multiplicative update 
 
