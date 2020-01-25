@@ -22,8 +22,8 @@ Alongside two optimisation methods, a pre-processing step is also presented. The
 The corresponding objective function used for each optimisation algorithm are:
 <br>
 <br>
-* Alternative least squares <br>
-* Multiplicative update <br>
+* Frobenius Norm <br>
+* Kullback-leibler Divergence <br>
 
 ### Example use
 _______________________________________________________________________________________________________________________________________
