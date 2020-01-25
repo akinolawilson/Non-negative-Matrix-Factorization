@@ -1,2 +1,2 @@
-### Non-negative-Matrix-Factorisation ###
+### Non-negative-Matrix-Factorization
 
