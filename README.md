@@ -21,8 +21,8 @@ Alongside two optimisation methods, a pre-processing step is also presented. The
 <br>
 The corresponding objective function used for each optimisation algorithm are:
 <br>
-* Alternative least squares <br>
-* Multiplicative update <br>
+*Alternative least squares <br>
+*Multiplicative update <br>
 
 ### Example use
 _______________________________________________________________________________________________________________________________________
