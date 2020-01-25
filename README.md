@@ -16,13 +16,13 @@ To make use of the classes, a user would need the following packages:-
 ________________________________________________________________________________________________________________________________________
 Alongside two optimisation methods, a pre-processing step is also presented. These optimisation methods are: 
 
-* Alternative least squares 
+* Alternative least squares<br>
 * Multiplicative update 
 <br>
 The corresponding objective function used for each optimisation algorithm are:
 <br>
-* Alternative least squares 
-* Multiplicative update 
+* Alternative least squares <br>
+* Multiplicative update <br>
 
 ### Example use
 _______________________________________________________________________________________________________________________________________
