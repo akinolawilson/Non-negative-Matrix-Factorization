@@ -1,4 +1,4 @@
-# Non-negative-Matrix-Factorization: a Pre-processing Method & Localised NMF Implementation 
+# Non-negative Matrix Factorization: a Pre-processing Method & Localised NMF Implementation 
 
 ## Overview 
 
