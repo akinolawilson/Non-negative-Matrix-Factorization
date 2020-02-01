@@ -23,20 +23,39 @@ pre = preprocessing
 # consider design matrix m by n; X, where there are n instances with m features. 
 transform, Xtransformed, XtransformedNormalsied = pre.preprocess(X)
 # Where 'transform' is the n by n matrix describing the undergone transformation of the design matrix, 
-# 'Xtransformed' is the end result design matrix and 'XtransformedNormalsied' is it normalised across each instance.
+# 'Xtransformed' is the end result design matrix and 'XtransformedNormalsied' 
+# is it normalised across each instance.
 ```
 #### KLNMF
 ```
-Give examples
+KL = KLNMF
+# consider design matrix m by n; X, where there are n instances with m features. 
+# If one wishes to factorise this matrix using the Kullback-Leibler divergence and
+# gradient descent method to a rank of r = 5 then 
+w,h,e = KL.GDOpt(X,r=5)
+# where 'w' is the latent basis,'h' the associated spectral weighting and 'e' the error
+# of factorization.
 ```
 #### frobeniusNMF
 
 ```
-Give examples
+FNMF = FrobeniusNMF
+# consider design matrix m by n; X, where there are n instances with m features. 
+# If one wishes to factorise this matrix using the Forbenius Norm and
+# non-negative least alternating squares mehtod to a rank of r = 5 then 
+w,h,e = FNMF.NNALSOpt(X,r=5)
+# where 'w' is the latent basis,'h' the associated spectral weighting and 'e' the error
+# of factorization.
 ```
 #### localNMF
 ```
-Give examples
+LNMF = localNMF
+# consider design matrix m by n; X, where there are n instances with m features. 
+# If one wishes to factorise this matrix using the localised Kullback-Leibler
+#  divergence multiplicative updates method to a rank of r = 5 then 
+w,h,e = LNMF.MUOpt(X,r=5)
+# where 'w' is the latent basis,'h' the associated spectral weighting and 'e' the error
+# of factorization.
 ```
 ### Further Development and Reading
 ________________________________________________________________________________________________________________________________________
