@@ -4,11 +4,11 @@
 ________________________________________________________________________________________________________________________________________
 This repository contains classes for the dimension reduction technique of non-negative matrix factorization alongside a data pre-processing technique. Three different cost functions have been implemented paired with three different optimisation methods. These are:<br>
 * Frobenius norm and non-negative alternating least squares 
-<br>
+
 * Kullback-Leibler divergence and gradient descent 
-<br>
+
 * Localised divergence and multiplicative updates
-<br>
+
 ### Prerequisites
 ________________________________________________________________________________________________________________________________________
 To make use of the classes, a user would need the following packages:-
