@@ -1,14 +1,10 @@
 import numpy as np
 import numpy.linalg as lin
-import matplotlib.pyplot as plt
-import matplotlib.cm as c
 import time as t
 
 
 class localNMF:
     
-    # params are needed for optimisation purposes. Epsilon is the tolerence, 
-    # alhpa is the 
     epsilon = 1e-3
     alpha = 0.1
     beta = 0.1
@@ -21,11 +17,13 @@ class localNMF:
     repetitions = 500
     
     
-    def __init__(self, alpha = 0.1, beta = 0.1, epsilon = 1e-3):
+    def __init__(self, alpha = 0.1, beta = 0.1, epsilon = 1e-3, iterations = 500, repetitions =500):
         localNMF.alpha = alpha
         localNMF.beta = beta
         localNMF.epsilon = epsilon
-        
+        localNMF.iterations = iterations
+        localNMF.repetitions = repetitions 
+    
     @classmethod
     def setEpsilon(cls, eps):
         cls.epsilon = eps
@@ -35,45 +33,13 @@ class localNMF:
     @classmethod
     def setBeta(cls, beta):
         cls.beta = beta
-        
+    @classmethod    
     def setIterations(cls, its):
         cls.iterations = its        
-    
+    @classmethod
     def setRepetitions(cls, reps):
         cls.repetitions = reps        
 
-     
-    
-    @staticmethod
-    def X(m,n): 
-        '''
-        Fucntion M returns non-negative, column stochastic m by n matrix
-        
-        For training purposes
-        '''
-        X = np.random.randint(1,100,m*n)
-        X = np.reshape(X,(m,n))
-        X = X.astype(float)
-        for i in range(np.shape(X)[1]):
-            l1Norm = sum(X[:,i])
-            X[:,i] = X[:,i] / l1Norm
-            
-        return X
-
-#    @staticmethod
-#    def Xnorm(X): 
-#        '''
-#        Fucntion that makes input matrix column stochastic. Note that preprocessing 
-#        already performs this column sotchastic operation.
-#        
-#        For testing purposes.
-#        '''
-#        cols = np.shape(X)[1]
-#        
-#        for i in range(cols):
-#            l1NormOfCol = sum(X[:,i])
-#            X[:,i] = X[:,i]/ l1NormOfCol
-#        return X
 
     @staticmethod
     def zeroTruncatedPoisson(loc=1, size=1):
@@ -102,8 +68,6 @@ class localNMF:
         '''
         Wo = localNMF.zeroTruncatedPoisson(size=(m,r))
         Ho = localNMF.zeroTruncatedPoisson(size=(r,n))
-        #Wo = np.random.randint(1,500,m*r) # arbitrary choice of range
-        #Ho = np.random.randint(1,500,r*n)
         Wo = np.reshape(Wo,(m,r)).astype(float)
         Ho = np.reshape(Ho,(r,n)).astype(float)
         
@@ -151,22 +115,22 @@ class localNMF:
         importance/impact on the objective function is quantified by alpha and beta, where
         these are postive constants.
         '''
-        #start = t.time()
+
         
         V,U,Z = [],[],[] 
         X = np.where(X==0, 1e-7, X) # zeros will cause issues in logarithm
         localNMF.n = np.shape(X)[1]
         localNMF.m = np.shape(X)[0]
         localNMF.r = np.shape(W)[1]
-        # finding elements of first part of cost function 
+        
         
         for i in range(localNMF.m):
             for j in range(localNMF.n):
                 
-                #if (W@H)[i,j] <= epsilon/6: # Issues with log argument
-                #    (W@H)[i,j] = epsilon/2
+                
+                
                 V.append( X[i,j] * localNMF.logIssue( X[i,j] , (W@H)[i,j]) - X[i,j] + (W@H)[i,j] )    
-                #V.append( X[i,j] * np.log( X[i,j] / (W@H)[i,j] ) - X[i,j] + (W@H)[i,j] )
+                
         for k in range(localNMF.r):
             for l in range(localNMF.r):
               U.append( (np.transpose(W)@W)[k,l] )
@@ -174,8 +138,8 @@ class localNMF:
             Z.append( (H@np.transpose(H))[q,q] )    
         
         U, V, Z = (1/len(U))*sum(U), (1/len(V))*sum(V), (1/len(Z))*sum(Z) 
-        #end = t.time()
-        #print('Processing time {:.3f} seconds'.format(end - start))
+        
+        
         return (V + localNMF.alpha*U - localNMF.beta *Z)
     
     ###############################################################################
@@ -223,13 +187,13 @@ class localNMF:
         return Wo, Ho
     ###############################################################################
     @staticmethod
-    def MKLOptimisationLNMF(X,
-                            r,
-                            alpha=0.1, 
-                            beta=0.1,
-                            iterations=500,
-                            repetitions=500,
-                            epsilon=0.01):
+    def LNMF(X,
+             r,
+             alpha=0.1, 
+             beta=0.1,
+             iterations=500,
+             repetitions=500,
+             epsilon=0.01):
  
         '''
         This function describes the multiplicative update rule for optimising W and H
@@ -309,94 +273,8 @@ class localNMF:
                             (localNMF.beta),
                             (rep)))
 
-    #        break
-    #    else:
-    #        continue  
     
         return Wprime, Hprime, error
     
 
 #%%
-import pandas as pd 
-dfResults = pd.DataFrame()
-X = np.load('reducedX.npy') # image size 42 by 38
-x30 = X[:,:30]
-r = 5
-#%%
-while r <= 50:
-    w, h, error = MKLOptimisationLNMF(x30, 5, alpha=0, beta=0,
-                                      iterations=2 * r, repetitions= r, epsilon = 1e-2)
-    
-    dfResults.append(pd.DataFrame({'W':[w],'h':[h],'error':error}, index=[int(r/5)]),
-                     ignore_index=False)
-    r += 5
-#%%
-
-fig = plt.figure(figsize=(20, 20))
-fig.suptitle("Latent Basis Corresponding to Reduction of Rank 5 ",x= 0.5, y = 0.93, fontsize=20)
-ax1 = fig.add_subplot(2,3, 1)
-ax2 = fig.add_subplot(2,3, 2)
-ax3 = fig.add_subplot(2,3, 3)
-ax4 = fig.add_subplot(2,3, 4)
-ax5 = fig.add_subplot(2,3, 5)
-ax1.axis('off')
-ax2.axis('off')
-ax3.axis('off')
-ax4.axis('off')
-ax5.axis('off')
-
-im1 = np.reshape(w[:,0], (42, 38))
-im2 = np.reshape(w[:,1], (42, 38))
-im3 = np.reshape(w[:,2], (42, 38))
-im4 = np.reshape(w[:,3], (42, 38))
-im5 = np.reshape(w[:,4], (42, 38))
-ax1.imshow(im1, cmap=c.gray)
-ax2.imshow(im2, cmap=c.gray)
-ax3.imshow(im3, cmap=c.gray)
-ax4.imshow(im4, cmap=c.gray)
-ax5.imshow(im5, cmap=c.gray)
-
-#%%
-
-approxX = w @ h
-fig.suptitle("Reconstruction  vs. Original ", x= 0.5, y = 0.93, fontsize=20)
-recon0 = np.reshape(approxX[:,0], (42,38))
-acc0 = np.reshape(x30[:,0], (42,38))
-recon1 = np.reshape(approxX[:,1], (42,38))
-acc1 = np.reshape(x30[:,1], (42,38))
-recon2 = np.reshape(approxX[:,2], (42,38))
-acc2 = np.reshape(x30[:,2], (42,38))
-
-fig = plt.figure(figsize=(15, 20))
-
-ax1 = fig.add_subplot(3,2, 1)
-ax2 = fig.add_subplot(3,2, 2)
-ax3 = fig.add_subplot(3,2, 3)
-ax4 = fig.add_subplot(3,2, 4)
-ax5 = fig.add_subplot(3,2, 5)
-ax6 = fig.add_subplot(3,2, 6)
-ax1.axis('off')
-ax2.axis('off')
-ax3.axis('off')
-ax4.axis('off')
-ax5.axis('off')
-ax6.axis('off')
-ax1.imshow(recon0, cmap=c.gray)
-ax2.imshow(acc0, cmap=c.gray)
-ax3.imshow(recon1, cmap=c.gray)
-ax4.imshow(acc1, cmap=c.gray)
-ax5.imshow(recon2, cmap=c.gray)
-ax6.imshow(acc2, cmap=c.gray)
-
-#%%
-###############################################################################
-#    Dask distributed attempt
-#    
-#    x = np.load('x.npy')
-#    from dask.distributed import Client
-#    import dask.array as da
-#    client = Client("10.156.67.49:8786")
-#    
-#    train = da.from_array(X, chunks=(200,180))
-#    big_future = client.scatter(train)
-#    future = client.submit(MKLOptimisationLNMF, big_future)
