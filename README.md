@@ -17,25 +17,25 @@ To make use of the classes, a user would need the following packages:-
 
 ### Examples of use
 _______________________________________________________________________________________________________________________________________
-### preprocessing
+#### preprocessing
 <br>
 ```
 Give examples
 ```
 <br>
-### KLNMF
+#### KLNMF
 <br>
 ```
 Give examples
 ```
 <br>
-### frobeniusNMF
+#### frobeniusNMF
 <br>
 ```
 Give examples
 ```
 <br>
-### localNMF
+#### localNMF
 <br>
 ```
 Give examples
