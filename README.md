@@ -19,24 +19,24 @@ To make use of the classes, a user would need the following packages:-
 _______________________________________________________________________________________________________________________________________
 ### preprocessing
 
-'''
-<dfs>
-'''
+```
+Give examples
+```
 <br>
 ### KLNMF
-'''
-<dfdff>
-'''
+```
+Give examples
+```
 <br>
 ### frobeniusNMF
-'''
-<dssfsd>
-'''
+```
+Give examples
+```
 <br>
 ### localNMF
-'''
-fddgd
-'''
+```
+Give examples
+```
 <br>
 ### Further Development and Reading
 ________________________________________________________________________________________________________________________________________
