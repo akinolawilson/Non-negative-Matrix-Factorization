@@ -1,5 +1,4 @@
 import numpy as np
-import numpy.linalg as lin
 import time as t
 
 
@@ -148,13 +147,13 @@ class localNMF:
     ###############################################################################
 
     @staticmethod
-    def multiplicativeUpdateOpt(X,
-                                 r,
-                                 alpha=0.1, 
-                                 beta=0.1,
-                                 iterations=500,
-                                 repetitions=500,
-                                 epsilon=0.003):
+    def MUOpt(X,
+              r,
+              alpha=0.1, 
+              beta=0.1,
+              iterations=500,
+              repetitions=500,
+              epsilon=0.003):
  
         '''
         This function describes the multiplicative update rule for optimising W and H
@@ -221,7 +220,7 @@ class localNMF:
                 Hprime = Ho
                 print('Optimisation complete using localised NMF. \n'
                   ' Proccessing time: {:.3f} seconds. \n'
-                  ' Error: {} \n'
+                  ' Error: {:.8f} \n'
                   ' Parameter information:- \n'
                   '     -rank: {} \n'
                   '     -alpha: {} \n'

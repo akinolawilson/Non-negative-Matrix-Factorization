@@ -172,7 +172,7 @@ class FrobeniusNMF:
                 Wprime, Hprime = Wup, Hup
                 print('Optimisation complete using Frobenius objective and alternating least squares NMF. \n'
                   ' Proccessing time: {:.3f} seconds. \n'
-                  ' Error: {} \n'
+                  ' Error: {:.8f} \n'
                   ' Parameter information:- \n'
                   '     -rank: {} \n'
                   '     -beta: {} \n'

@@ -39,14 +39,6 @@ class preprocessing:
                  constrain_rho = False):
         return 
         
-#        self.X = X
-#        self.m = X.shape[0]
-#        self.n = X.shape[1]
-#        self.flattenedX = X.flatten()
-        
-
-######################################## just gets dimensions of data set 
-            
     @staticmethod
     def Xtest(m,n):
         '''
@@ -213,5 +205,3 @@ class preprocessing:
    
         
         return B, Xprime, XprimeNorm
-
-#%%

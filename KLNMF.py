@@ -1,5 +1,4 @@
 import numpy as np
-import numpy.linalg as lin
 import time as t
 
 class KLNMF:
@@ -168,7 +167,7 @@ class KLNMF:
                 print('Optimisation complete using Kullback-Leibler divergence'
                       ' objective and gradient descent NMF. \n'
                   ' Proccessing time: {:.3f} seconds. \n'
-                  ' Error: {} \n'
+                  ' Error: {:.8f} \n'
                   ' Parameter information:- \n'
                   '     -rank: {} \n'
                   '     -Learning rate, alpha: {} . \n'
