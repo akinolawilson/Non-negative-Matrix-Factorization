@@ -12,25 +12,25 @@ This repository contains classes for the dimension reduction technique of non-ne
 ### Prerequisites
 ________________________________________________________________________________________________________________________________________
 To make use of the classes, a user would need the following packages:-
-*Numpy 
-*Scipy
+* Numpy 
+* Scipy
 
 ### Examples of use
 _______________________________________________________________________________________________________________________________________
 ### preprocessing
 
 '''
-dfs
+<dfs>
 '''
 <br>
 ### KLNMF
 '''
-dfdff
+<dfdff>
 '''
 <br>
 ### frobeniusNMF
 '''
-dssfsd
+<dssfsd>
 '''
 <br>
 ### localNMF
