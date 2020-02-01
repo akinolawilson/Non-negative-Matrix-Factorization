@@ -24,20 +24,24 @@ Give examples
 ```
 <br>
 ### KLNMF
+<br>
 ```
 Give examples
 ```
 <br>
 ### frobeniusNMF
+<br>
 ```
 Give examples
 ```
 <br>
 ### localNMF
+<br>
 ```
 Give examples
 ```
 <br>
 ### Further Development and Reading
 ________________________________________________________________________________________________________________________________________
+<br>
 The next task at hand is decoupling the optimisation methods from the objective functions, such that they can be used independently. A formal review of the models and an example application can be found at my <a href="https://www.researchgate.net/publication/338197703_Non-negative_Matrix_Factorization">ResearchGate</a> account. 
