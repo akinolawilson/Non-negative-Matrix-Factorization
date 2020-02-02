@@ -21,9 +21,9 @@ ________________________________________________________________________________
 ```
 pre = preprocessing
 # consider design matrix m by n; X, where there are n instances with m features. 
-transform, Xtransformed, XtransformedNormalsied = pre.preprocess(X)
+transform, Xtransformed, XtransformedNormalised = pre.preprocess(X)
 # Where 'transform' is the n by n matrix describing the undergone transformation of the design matrix, 
-# 'Xtransformed' is the end result design matrix and 'XtransformedNormalsied' 
+# 'Xtransformed' is the end result design matrix and 'XtransformedNormalised' 
 # is it normalised across each instance.
 ```
 #### KLNMF
